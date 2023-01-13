@@ -8,7 +8,26 @@
   <title>weather</title>
 </head>
 <body>
+  <section class="form">
+    <p class="error"></p>
+    <form action="">
+      <div>
+        <label for="city">city <span aria-label="required">*</span></label>
+        <input type="text" name="city" id="city" required>
+      </div>
+      <div>
+        <label for="city">state</label>
+        <input type="text" name="state" id="state">
+      </div>
+      <div>
+        <label for="city">country</label>
+        <input type="text" name="country" id="country">
+      </div>
+      <button type="submit">submit</button>
+    </form>
+  </section>
   <section class="forecast">
+    <p class="error"></p>
     <p class="city"></p>
     <img src="" alt="" class="icon">
     <p class="weather"></p>
