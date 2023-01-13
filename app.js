@@ -23,6 +23,12 @@ async function getWeather(lat, lon) {
   }
 }
 
+function updateView(weather) {
+  cityView.textContent = weather.city;
+  weatherView.textContent = weather.weather;
+  temperatureView.textContent = weather.temperature;
+}
+
 getLatLon('bicester', null, 'GB')
 .then(coordinates => getWeather(coordinates.lat, coordinates.lon))
-.then(weather => console.log(weather));
+.then(weather => updateView(weather));
