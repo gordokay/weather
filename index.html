@@ -4,34 +4,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
   <title>weather</title>
 </head>
 <body>
-  <section class="form">
-    <p class="error"></p>
-    <form action="">
-      <div>
-        <label for="city">city <span aria-label="required">*</span></label>
-        <input type="text" name="city" id="city" required>
-      </div>
-      <div>
-        <label for="city">state</label>
-        <input type="text" name="state" id="state">
-      </div>
-      <div>
-        <label for="city">country</label>
-        <input type="text" name="country" id="country">
-      </div>
-      <button type="submit">submit</button>
-    </form>
-  </section>
-  <section class="forecast">
-    <p class="error"></p>
-    <p class="city"></p>
-    <img src="" alt="" class="icon">
-    <p class="weather"></p>
-    <p class="temperature"></p>
-  </section>
+  <main>
+    <section class="form">
+      <h2>enter location</h2>
+      <p class="error"></p>
+      <form action="">
+        <div>
+          <label for="city">city <span aria-label="required">*</span></label>
+          <input type="text" name="city" id="city" required>
+        </div>
+        <div>
+          <label for="city">state</label>
+          <input type="text" name="state" id="state">
+        </div>
+        <div>
+          <label for="city">country</label>
+          <input type="text" name="country" id="country">
+        </div>
+        <button type="submit">get forecast</button>
+      </form>
+    </section>
+    <section class="forecast">
+      <p class="error"></p>
+      <h1 class="city"></h1>
+      <img src="" alt="" class="icon">
+      <p class="weather"></p>
+      <p class="temperature"></p>
+    </section>
+  </main>
 </body>
 </html>

@@ -46,7 +46,7 @@ async function getWeather(lat, lon) {
 
 function updateView(weather) {
   cityView.textContent = weather.city;
-  iconView.src = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+  iconView.src = `http://openweathermap.org/img/wn/${weather.icon}@4x.png`;
   iconView.alt = `${weather.weather} icon`;
   weatherView.textContent = weather.weather;
   temperatureView.textContent = weather.temperature;
