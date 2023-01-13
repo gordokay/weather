@@ -1,4 +1,5 @@
 const cityView = document.querySelector('.city');
+const iconView = document.querySelector('.icon');
 const weatherView = document.querySelector('.weather');
 const temperatureView = document.querySelector('.temperature');
 
@@ -18,6 +19,7 @@ async function getWeather(lat, lon) {
   const data = await response.json();
   return {
     'city': data.name,
+    'icon': data.weather[0].icon,
     'weather': data.weather[0].main,
     'temperature': data.main.temp
   }
@@ -25,6 +27,8 @@ async function getWeather(lat, lon) {
 
 function updateView(weather) {
   cityView.textContent = weather.city;
+  iconView.src = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+  iconView.alt = `${weather.weather} icon`;
   weatherView.textContent = weather.weather;
   temperatureView.textContent = weather.temperature;
 }
