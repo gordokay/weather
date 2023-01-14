@@ -72,3 +72,7 @@ button:hover {
 .forecast h1 {
   font-size: 2rem;
 }
+
+.forecast button {
+  visibility: hidden;
+}

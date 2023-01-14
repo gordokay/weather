@@ -10,9 +10,13 @@ const stateInput = document.getElementById('state');
 const countryInput = document.getElementById('country');
 const formErrorView = document.querySelector('.form > .error');
 
+const temperatureToggler = document.querySelector('.forecast > button');
+let isFahrenheit = true;
+
 const apiKey = '50c34d5284bdca366cf10f6db1b9612f';
 
 form.addEventListener('submit', submitForm);
+temperatureToggler.addEventListener('click', toggleTemperatureUnit);
 
 async function getLatLon(city, state, country) {
   try {
@@ -24,7 +28,8 @@ async function getLatLon(city, state, country) {
       'lon': data[0].lon
     };
   } catch (err) {
-    formErrorView.textContent = err;
+    formErrorView.textContent = `'Location not found: ${err}`;
+    throw err;
   }
 }
 
@@ -37,10 +42,11 @@ async function getWeather(lat, lon) {
       'city': data.name,
       'icon': data.weather[0].icon,
       'weather': data.weather[0].main,
-      'temperature': data.main.temp
+      'temperature': Math.round(data.main.temp)
     }
   } catch (err) {
-    forecastErrorView.textContent = err;
+    forecastErrorView.textContent = `Error getting weather data: ${err}`;
+    throw err;
   }
 }
 
@@ -50,6 +56,9 @@ function updateView(weather) {
   iconView.alt = `${weather.weather} icon`;
   weatherView.textContent = weather.weather;
   temperatureView.textContent = weather.temperature;
+  temperatureToggler.style.visibility = 'visible';
+  temperatureToggler.textContent = 'switch to celcius';
+  isFahrenheit = true;
 }
 
 function submitForm(e) {
@@ -65,4 +74,24 @@ function clearForm() {
   cityInput.value = '';
   stateInput.value = '';
   countryInput.value = '';
+}
+
+function toggleTemperatureUnit() {
+  if(isFahrenheit) {
+    temperatureView.textContent = convertToCelcius(+temperatureView.textContent);
+    temperatureToggler.textContent = 'switch to fahrenheit';
+    isFahrenheit = false;
+  } else {
+    temperatureView.textContent = convertToFahrenheit(+temperatureView.textContent);
+    temperatureToggler.textContent = 'switch to celcius';
+    isFahrenheit = true;
+  }
+} 
+
+function convertToCelcius(temp) {
+  return Math.round((temp - 32) * (5/9));
+}
+
+function convertToFahrenheit(temp) {
+  return Math.round((temp * (9/5)) + 32);
 }
