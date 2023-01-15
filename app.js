@@ -13,6 +13,8 @@ const formErrorView = document.querySelector('.form > .error');
 const temperatureToggler = document.querySelector('.forecast > button');
 let isFahrenheit = true;
 
+const loader = document.querySelector('.loader');
+
 const apiKey = '50c34d5284bdca366cf10f6db1b9612f';
 
 form.addEventListener('submit', submitForm);
@@ -51,6 +53,7 @@ async function getWeather(lat, lon) {
 }
 
 function updateView(weather) {
+  hideLoader();
   cityView.textContent = weather.city;
   iconView.src = `http://openweathermap.org/img/wn/${weather.icon}@4x.png`;
   iconView.alt = `${weather.weather} icon`;
@@ -62,6 +65,7 @@ function updateView(weather) {
 }
 
 function submitForm(e) {
+  displayLoader();
   e.preventDefault();
   getLatLon(cityInput.value, stateInput.value, countryInput.value)
   .then(coordinates => getWeather(coordinates.lat, coordinates.lon))
@@ -94,4 +98,12 @@ function convertToCelcius(temp) {
 
 function convertToFahrenheit(temp) {
   return Math.round((temp * (9/5)) + 32);
+}
+
+function displayLoader() {
+  loader.classList.add('visible');
+}
+
+function hideLoader() {
+  loader.classList.remove('visible');
 }
